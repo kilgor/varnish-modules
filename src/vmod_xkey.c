@@ -522,8 +522,10 @@ purge(VRT_CTX, VCL_STRING key, VCL_INT do_soft)
 	int i = 0;
 
 	CHECK_OBJ_NOTNULL(ctx, VRT_CTX_MAGIC);
+#if defined HAVE_OBJCORE_EXP && defined VARNISH_PLUS
 	CHECK_OBJ_NOTNULL(ctx->req, REQ_MAGIC);
 	CHECK_OBJ_NOTNULL(ctx->req->wrk, WORKER_MAGIC);
+#endif
 
 	if (!key || !*key)
 		return (0);
